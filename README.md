@@ -1,16 +1,8 @@
-<p align="center">
-  <img src="https://homeland.ruby-china.org/images/text-logo.svg" width="400" />
-  <p align="center">Open source discussion website.</p>
-  <p align="center">开源的论坛／社区网站系统，基于 <a href="https://ruby-china.org">Ruby China</a> 发展而来。</p>
-  <p align="center">
-    <a href="https://travis-ci.org/ruby-china/homeland">
-      <img src="https://travis-ci.org/ruby-china/homeland.svg?branch=master" />
-    </a>
-    <a href="https://codecov.io/github/ruby-china/homeland?branch=master">
-      <img src="https://codecov.io/github/ruby-china/homeland/coverage.svg?branch=master" />
-    </a>
-  </p>
-</p>
+# Landscape
+
+web forum for humans
+
+基于 [Ruby China](https://ruby-china.org) 和 [Homeland](https://github.com/ruby-china/homeland/tree/9adaf2f4c42f9c4f8eb4ed6a5965e417ada6a367) 的论坛应用。
 
 ## Deployment
 
@@ -38,7 +30,8 @@ https://homeland.ruby-china.org/expo
 
 ## License
 
-Copyright (c) 2011-2017 Ruby China
+Copyright (c) 2011-2020 Ruby China
+Copyright (c) 2020 Landscape
 
 Released under the MIT license:
 
