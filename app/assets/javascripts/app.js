@@ -24,8 +24,6 @@
 //= require topics
 //= require editor
 //= require toc
-//= require turbolinks
-//= require google_analytics
 //= require jquery.infinitescroll.min
 //= require d3.min
 //= require cal-heatmap.min
