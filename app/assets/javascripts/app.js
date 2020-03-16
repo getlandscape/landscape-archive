@@ -24,6 +24,7 @@
 //= require topics
 //= require editor
 //= require toc
+//= require turbolinks
 //= require jquery.infinitescroll.min
 //= require d3.min
 //= require cal-heatmap.min

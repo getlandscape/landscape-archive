@@ -21,6 +21,7 @@ tmp/**/*
 /shared/
 vendor/cache/
 config/nginx/nginx.conf
+.env.local
 .env.production
 .env.development
 .env.test
@@ -41,3 +42,6 @@ spec/examples.txt
 !/plugins/test/
 app.local.env
 *.tmp
+
+/config/credentials.yml.enc
+/config/master.key

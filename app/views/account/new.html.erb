@@ -32,11 +32,13 @@
           <div class="form-group">
             <%= f.password_field :password_confirmation, class: "form-control form-control-lg", placeholder: t("activerecord.attributes.user.password_confirmation") %>
           </div>
+          <% if Rails.application.config.captcha %>
           <div class="form-group">
             <div class="input-group input-group-lg">
               <%= render "/shared/captcha_input" %>
             </div>
           </div>
+          <% end %>
           <div class="form-actions">
             <%= f.submit t('users.submit_new_user'), class: "btn btn-lg btn-primary", 'data-disable-with' => t("common.submitting") %>
           </div>
