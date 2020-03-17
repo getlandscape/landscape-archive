@@ -1,0 +1,60 @@
+version: "3"
+
+services:
+  postgresql:
+    container_name: 'landscape_db'
+    image: postgres:9.6-alpine
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./data/postgresql:/var/lib/postgresql/data
+      - ./data/pgdumps:/pgdumps
+
+  redis:
+    container_name: 'landscape_redis'
+    image: redis:4-alpine
+    ports:
+      - '6379:6379'
+    volumes:
+      - ./data/redis:/data
+      - ./etc/redis.conf:/etc/redis.conf
+    command: redis-server /etc/redis.conf
+
+  elasticsearch:
+    container_name: 'landscape_search'
+    image: elasticsearch:5-alpine
+    environment:
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms256m -Xmx512m"
+    volumes:
+      - ./data/elasticsearch:/usr/share/elasticsearch/data
+    ports:
+      - '9200:9200'
+      - '9300:9300'
+
+  app:
+    container_name: 'landscape_app'
+    image: landscape/landscape
+    env_file:
+      - app.secret.env
+      - app.local.env
+    links:
+      - landscape_search
+      - landscape_db
+      - landscape_redis
+    logging:
+      options:
+        max-size: "1g"
+        max-file: "10"
+    volumes:
+      - ./data/uploads:/home/app/homeland/public/uploads
+      - ./shared/cache/uploads-thumb:/home/app/cache/uploads-thumb
+      - ./log:/home/app/homeland/log
+      - ./tmp:/home/app/homeland/tmp
+    command: /home/app/homeland/bin/docker-start
+    ports:
+      - "3000:3000"
+
+ 

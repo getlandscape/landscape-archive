@@ -41,6 +41,7 @@ spec/examples.txt
 /plugins/*
 !/plugins/test/
 app.local.env
+app.secret.env
 *.tmp
 
 /config/credentials.yml.enc

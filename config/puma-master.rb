@@ -2,7 +2,7 @@
 
 app_root = "/home/app/homeland"
 daemonize false
-port 7000
+port 3000
 environment ENV.fetch("RAILS_ENV") { "production" }
 workers (ENV["workers"] || 4)
 threads (ENV["min_threads"] || 8), (ENV["max_threads"] || 8)

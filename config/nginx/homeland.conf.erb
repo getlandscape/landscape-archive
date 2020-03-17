@@ -2,8 +2,8 @@
 proxy_cache_path /home/app/cache/uploads-thumb levels=1:2 keys_zone=uploads_thumb:10m max_size=50G;
 
 upstream app_backend {
-  server app:7000 fail_timeout=0;
-  server app_backup:7001 backup;
+  server app:3000 fail_timeout=0;
+  server app_backup:3001 backup;
   keepalive 3;
 }
 
