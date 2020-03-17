@@ -68,16 +68,10 @@ services:
   landscape_nginx:
     container_name: landscape_nginx
     restart: always
-    image: jwilder/nginx-proxy
-    volumes:
-      - /var/run/docker.sock:/tmp/docker.sock:ro
-      - ./certificates:/etc/nginx/certs:ro
-      - ./nginx/vhost.d:/etc/nginx/vhost.d
-      - ./nginx/conf.d/custom.conf:/etc/nginx/conf.d/custom.conf:ro
-      - ./nginx/html:/usr/share/nginx/html
+    image: landscape/landscape
     ports:
       - 80:80
-      - 443:443
     links:
-      - app
-    
+      - landscape_app
+    command: /etc/nginx/start
+

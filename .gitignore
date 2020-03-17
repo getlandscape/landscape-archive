@@ -20,7 +20,6 @@ tmp/**/*
 /data/
 /shared/
 vendor/cache/
-config/nginx/nginx.conf
 .env.local
 .env.production
 .env.development
