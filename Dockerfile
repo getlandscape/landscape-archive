@@ -20,9 +20,12 @@ RUN gem install puma
 RUN bundle install --deployment --jobs 20 --retry 5 &&\
   find /home/app/homeland/vendor/bundle -name tmp -type d -exec rm -rf {} +
 ADD . /home/app/homeland
+ADD ./config/nginx/ /etc/nginx
 
 RUN rm -Rf /home/app/homeland/vendor/cache
 
 RUN bundle exec rails assets:precompile RAILS_ENV=production SECRET_KEY_BASE=fake_secure_for_compile
+
+
 
 

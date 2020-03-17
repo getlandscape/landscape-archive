@@ -58,9 +58,9 @@ services:
       - DATABASE_PASSWORD=postgres
     volumes:
       - ./data/uploads:/home/app/homeland/public/uploads
-      - ./shared/cache/uploads-thumb:/home/app/cache/uploads-thumb
-      - ./log:/home/app/homeland/log
-      - ./tmp:/home/app/homeland/tmp
+      - ./data/shared/cache/uploads-thumb:/home/app/cache/uploads-thumb
+      - ./data/log:/home/app/homeland/log
+      - ./data/tmp:/home/app/homeland/tmp
     command: /home/app/homeland/bin/docker-start
     ports:
       - "3000:3000"
@@ -73,5 +73,11 @@ services:
       - 80:80
     links:
       - landscape_app
-    command: /etc/nginx/start
+    command: nginx -c /etc/nginx/nginx.conf
+    volumes:
+      - ./data/uploads:/home/app/homeland/public/uploads
+      - ./data/shared/cache/uploads-thumb:/home/app/cache/uploads-thumb
+      - ./data/log:/home/app/log
+      - ./data/tmp:/home/app/tmp
+      - ./data/pids:/home/app/pids
 
