@@ -1,7 +1,7 @@
 version: "3"
 
 services:
-  postgresql:
+  landscape_db:
     container_name: 'landscape_db'
     image: postgres:9.6-alpine
     ports:
@@ -12,7 +12,7 @@ services:
       - ./data/postgresql:/var/lib/postgresql/data
       - ./data/pgdumps:/pgdumps
 
-  redis:
+  landscape_redis:
     container_name: 'landscape_redis'
     image: redis:4-alpine
     ports:
@@ -22,7 +22,7 @@ services:
       - ./etc/redis.conf:/etc/redis.conf
     command: redis-server /etc/redis.conf
 
-  elasticsearch:
+  landscape_search:
     container_name: 'landscape_search'
     image: elasticsearch:5-alpine
     environment:
@@ -34,7 +34,7 @@ services:
       - '9200:9200'
       - '9300:9300'
 
-  app:
+  landscape_app:
     container_name: 'landscape_app'
     image: landscape/landscape
     env_file:
