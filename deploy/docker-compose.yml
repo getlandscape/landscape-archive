@@ -3,13 +3,16 @@ version: "3"
 services:
   landscape_db:
     container_name: 'landscape_db'
-    image: postgres:9.6-alpine
+    image: postgres:10
     ports:
       - '5432:5432'
     environment:
       - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=landscape
+      - PGDATA=/pgdata
     volumes:
-      - ./data/postgresql:/var/lib/postgresql/data
+      - ./data/postgresql:/pgdata
       - ./data/pgdumps:/pgdumps
 
   landscape_redis:
@@ -48,6 +51,11 @@ services:
       options:
         max-size: "1g"
         max-file: "10"
+    environment:
+      - DATABASE_NAME=landscape
+      - DATABASE_HOST=landscape_db
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=postgres
     volumes:
       - ./data/uploads:/home/app/homeland/public/uploads
       - ./shared/cache/uploads-thumb:/home/app/cache/uploads-thumb
@@ -57,4 +65,19 @@ services:
     ports:
       - "3000:3000"
 
- 
+  landscape_nginx:
+    container_name: landscape_nginx
+    restart: always
+    image: jwilder/nginx-proxy
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./certificates:/etc/nginx/certs:ro
+      - ./nginx/vhost.d:/etc/nginx/vhost.d
+      - ./nginx/conf.d/custom.conf:/etc/nginx/conf.d/custom.conf:ro
+      - ./nginx/html:/usr/share/nginx/html
+    ports:
+      - 80:80
+      - 443:443
+    links:
+      - app
+    
