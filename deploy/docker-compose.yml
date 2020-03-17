@@ -70,7 +70,7 @@ services:
     restart: always
     image: landscape/landscape
     ports:
-      - 80:80
+      - 8080:80
     links:
       - landscape_app
     command: nginx -c /etc/nginx/nginx.conf
