@@ -11,3 +11,5 @@ down:
 secret:
 	@test -f app.secret.env || echo "SECRET_KEY_BASE=`openssl rand -hex 32`" > app.secret.env
 	@cat app.secret.env
+backup:
+	./backup .

@@ -4,8 +4,6 @@ services:
   landscape_db:
     container_name: 'landscape_db'
     image: postgres:10
-    ports:
-      - '5432:5432'
     environment:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_USER=postgres
@@ -18,8 +16,6 @@ services:
   landscape_redis:
     container_name: 'landscape_redis'
     image: redis:4-alpine
-    ports:
-      - '6379:6379'
     volumes:
       - ./data/redis:/data
       - ./etc/redis.conf:/etc/redis.conf
@@ -33,9 +29,6 @@ services:
       - "ES_JAVA_OPTS=-Xms256m -Xmx512m"
     volumes:
       - ./data/elasticsearch:/usr/share/elasticsearch/data
-    ports:
-      - '9200:9200'
-      - '9300:9300'
 
   landscape_app:
     container_name: 'landscape_app'

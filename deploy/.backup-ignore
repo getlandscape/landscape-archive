@@ -1,5 +1,7 @@
-pgdata*
-backups*
-.git*
-client*
-nginx*
+./backups*
+./data/elasticsearch*
+./data/log*
+./data/pids*
+./data/postgresql*
+./data/redis*
+./data/tmp*
