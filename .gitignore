@@ -45,3 +45,4 @@ app.secret.env
 
 /config/credentials.yml.enc
 /config/master.key
+/deploy/data
