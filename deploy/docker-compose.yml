@@ -65,6 +65,32 @@ services:
     ports:
       - "3000:3000"
 
+  landscape_worker:
+    container_name: 'landscape_worker'
+    image: landscape/landscape
+    env_file:
+      - app.secret.env
+      - app.local.env
+    links:
+      - landscape_search
+      - landscape_db
+      - landscape_redis
+    logging:
+      options:
+        max-size: "1g"
+        max-file: "10"
+    environment:
+      - DATABASE_NAME=landscape
+      - DATABASE_HOST=landscape_db
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=postgres
+    volumes:
+      - ./data/uploads:/home/app/homeland/public/uploads
+      - ./data/shared/cache/uploads-thumb:/home/app/cache/uploads-thumb
+      - ./data/log:/home/app/homeland/log
+      - ./data/tmp:/home/app/homeland/tmp
+    command: bundle exec sidekiq -C config/sidekiq.yml
+
   landscape_nginx:
     container_name: landscape_nginx
     restart: always
