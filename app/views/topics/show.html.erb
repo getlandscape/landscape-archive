@@ -34,6 +34,13 @@
       <% end %>
       <div class="card-body markdown markdown-toc">
         <%= raw Setting.before_topic_html %>
+        
+        <% if @topic.topic_type == 'event' %>
+        <div>
+          
+        </div>
+        <% end %>
+
         <%= @topic.body_html %>
         <%= raw Setting.after_topic_html %>
       </div>
@@ -54,6 +61,27 @@
       </div>
     <% end %>
     <% if current_user %>
+      <% if @topic.topic_type == 'event' %>
+        <% if Ticket.find_by(event: @topic.event, user: current_user) %>
+          <div id="reply" class="card">
+            <div class="card-body">
+              <div class="card-title hide-ios">你已成功报名</div>
+            </div>
+          </div>
+        <% else %>
+          <div id="reply" class="card">
+            <div class="card-body">
+              <div class="card-title hide-ios">活动报名</div>
+                <%= form_with(model: Ticket.new, remote: true, url: register_event_topics_path(topic_id: @topic), id: "new_reply") do |f| %>
+                  <div class="submit-buttons">
+                    <button type="submit" id="reply-button" class="btn btn-primary" tabindex="2", data-disable-with='<%= t("topics.submit_reply") %>'><%= t("topics.submit_event_register")%></button>
+                  </div>
+                <% end %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+
       <% if @topic.closed? %>
         <div class="alert alert-info">此话题已经于 <%= l @topic.closed_at, format: :long %> 关闭，不再接受任何回帖。</div>
       <% else %>

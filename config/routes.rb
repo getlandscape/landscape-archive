@@ -75,6 +75,7 @@ Rails.application.routes.draw do
 
     collection do
       get :new_event
+      post :register_event
       get :no_reply
       get :popular
       get :last

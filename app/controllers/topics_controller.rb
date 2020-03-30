@@ -66,6 +66,12 @@ class TopicsController < ApplicationController
     end
   end
 
+  def register_event
+    @topic = Topic.find(params[:topic_id])
+    @ticket = Ticket.new(event: @topic.event, user: current_user)
+    @ticket.save
+  end
+
   def new_event
     @topic = Topic.new(user_id: current_user.id)
     @topic.build_event()
