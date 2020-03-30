@@ -66,6 +66,16 @@ class TopicsController < ApplicationController
     end
   end
 
+  def new_event
+    @topic = Topic.new(user_id: current_user.id)
+    @topic.build_event()
+    unless params[:node].blank?
+      @topic.node_id = params[:node]
+      @node = Node.find_by_id(params[:node])
+      render_404 if @node.blank?
+    end
+  end
+
   def edit
     @node = @topic.node
   end
@@ -75,6 +85,7 @@ class TopicsController < ApplicationController
     @topic.user_id = current_user.id
     @topic.node_id = params[:node] || topic_params[:node_id]
     @topic.team_id = ability_team_id
+    @topic.topic_type = 'event' if @topic.event.present?
     @topic.save
   end
 
@@ -169,7 +180,7 @@ class TopicsController < ApplicationController
     end
 
     def topic_params
-      params.require(:topic).permit(:title, :body, :node_id, :team_id)
+      params.require(:topic).permit(:title, :body, :node_id, :team_id, event_attributes: [:id, :name, :start_time, :location, :live_url, :event_fee, :pay_method, :open_register, :_destroy])
     end
 
     def ability_team_id

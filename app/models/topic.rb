@@ -13,6 +13,9 @@ class Topic < ApplicationRecord
   belongs_to :last_reply_user, class_name: "User", required: false
   belongs_to :last_reply, class_name: "Reply", required: false
   has_many :replies, dependent: :destroy
+  has_one  :event, dependent: :destroy
+
+  accepts_nested_attributes_for :event
 
   validates :user_id, :title, :body, :node_id, presence: true
 

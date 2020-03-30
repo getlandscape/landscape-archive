@@ -1,6 +1,7 @@
 "zh-CN":
   topics:
     new_topic: "发布新话题"
+    new_event: "发布新活动"
     edit_topic: "修改话题"
     no_replies: "暂无回复。"
     recent_topics: "最近发布的话题"

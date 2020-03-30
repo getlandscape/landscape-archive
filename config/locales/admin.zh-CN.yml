@@ -1,5 +1,7 @@
 "zh-CN":
   admin:
+    home_path: "回到前台"
+    admin_path: "管理后台"
     menu:
       root_path: "概况"
       site_configs: "设置"

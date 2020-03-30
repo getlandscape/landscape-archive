@@ -13,6 +13,7 @@
     </a>
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-new-menu">
       <%= link_to t("topics.new_topic"), main_app.new_topic_path, class: "dropdown-item" %>
+      <%= link_to t("topics.new_event"), main_app.new_event_topics_path, class: "dropdown-item" %>
       <% if can?(:create, Team) && Setting.has_module?(:team) %>
         <div class="dropdown-divider"></div>
         <%= link_to t("teams.new_team"), main_app.new_team_path, class: "dropdown-item" %>
@@ -38,9 +39,9 @@
         <% if current_user&.admin? %>
           <div class="dropdown-divider"></div>
           <% if params[:controller].start_with?("admin/") %>
-            <%= link_to "回到前台", main_app.root_path, class: "dropdown-item" %>
+            <%= link_to t("admin.home_path"), main_app.root_path, class: "dropdown-item" %>
           <% else %>
-            <%= link_to "管理后台", main_app.admin_root_path, class: "dropdown-item" %>
+            <%= link_to t("admin.admin_path"), main_app.admin_root_path, class: "dropdown-item" %>
           <% end %>
         <% end %>
 
