@@ -19,7 +19,7 @@ class AccountController < Devise::RegistrationsController
     sign_up_count = Rails.cache.read(cache_key) || 0
     setting_limit = Setting.sign_up_daily_limit
     if setting_limit > 0 && sign_up_count >= setting_limit
-      message = "You not allow to sign up new Account, because your IP #{request.remote_ip} has over #{setting_limit} times in today."
+      message = "You are not allowed to sign up new Account, because your IP #{request.remote_ip} has tried over #{setting_limit} times in today."
       logger.warn message
       return render status: 403, plain: message
     end

@@ -13,7 +13,7 @@ class User < ApplicationRecord
   LOGIN_FORMAT              = 'A-Za-z0-9\-\_\.'
   ALLOW_LOGIN_FORMAT_REGEXP = /\A[#{LOGIN_FORMAT}]+\z/
 
-  ACCESSABLE_ATTRS = %i[name email_public location company bio website github twitter tagline avatar by
+  ACCESSABLE_ATTRS = %i[name email_public location company bio website github twitter ethereum_address tagline avatar by
                         current_password password password_confirmation _rucaptcha]
 
   devise :database_authenticatable, :registerable, :recoverable, :lockable,

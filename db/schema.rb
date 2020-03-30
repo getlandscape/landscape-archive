@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_13_155459) do
+ActiveRecord::Schema.define(version: 2020_03_30_070953) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -170,47 +170,12 @@ ActiveRecord::Schema.define(version: 2020_02_13_155459) do
     t.index ["page_id"], name: "index_page_versions_on_page_id"
   end
 
-  create_table "pages", id: :serial, force: :cascade do |t|
-    t.string "slug", null: false
-    t.string "title", null: false
-    t.text "body", null: false
-    t.boolean "locked", default: false
-    t.integer "version", default: 0, null: false
-    t.integer "editor_ids", default: [], null: false, array: true
-    t.integer "word_count", default: 0, null: false
-    t.integer "changes_cout", default: 1, null: false
-    t.integer "comments_count", default: 0, null: false
-    t.datetime "deleted_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["slug"], name: "index_pages_on_slug", unique: true
-  end
-
   create_table "photos", id: :serial, force: :cascade do |t|
     t.integer "user_id"
     t.string "image", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["user_id"], name: "index_photos_on_user_id"
-  end
-
-  create_table "posts", id: :serial, force: :cascade do |t|
-    t.string "title", null: false
-    t.string "slug", null: false
-    t.text "body", null: false
-    t.string "summary", limit: 5000
-    t.string "banner"
-    t.integer "user_id"
-    t.integer "likes_count", default: 0, null: false
-    t.integer "comments_count", default: 0, null: false
-    t.integer "status", default: 0, null: false
-    t.datetime "published_at", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["published_at"], name: "index_posts_on_published_at"
-    t.index ["slug"], name: "index_posts_on_slug"
-    t.index ["status"], name: "index_posts_on_status"
-    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "replies", id: :serial, force: :cascade do |t|
@@ -350,6 +315,7 @@ ActiveRecord::Schema.define(version: 2020_02_13_155459) do
     t.integer "team_users_count"
     t.integer "followers_count", default: 0
     t.integer "following_count", default: 0
+    t.string "ethereum_address"
     t.index "lower((login)::text) varchar_pattern_ops", name: "index_users_on_lower_login_varchar_pattern_ops"
     t.index "lower((name)::text) varchar_pattern_ops", name: "index_users_on_lower_name_varchar_pattern_ops"
     t.index ["email"], name: "index_users_on_email", unique: true

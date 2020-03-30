@@ -10,7 +10,7 @@ class User
 
       scoped_field :profile_fields, default: {}
 
-      PROFILE_FIELDS = %i[alipay paypal qq weibo wechat douban dingding aliwangwang
+      PROFILE_FIELDS = %i[alipay paypal qq weibo wechat douban
                           facebook instagram dribbble battle_tag psn_id steam_id]
 
       PROFILE_FIELD_PREFIXS = {

@@ -41,6 +41,16 @@
           </div>
           <% end %>
 
+          <% if Setting.has_profile_field? :ethereum_address %>
+          <div class="form-group">
+            <%= f.label :ethereum_address %>
+            <div class="input-group">
+              <span class="input-group-prepend"><span class="input-group-text">0x</span></span>
+              <%= f.text_field :ethereum_address, class: "form-control" %>
+            </div>
+          </div>
+          <% end %>
+
           <% if Setting.has_profile_field? :website %>
             <div class="form-group">
               <%= f.label :website %>

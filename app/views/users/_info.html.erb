@@ -32,6 +32,15 @@
       });
     </script>
 
+    <% if @user.ethereum_address.present? %>
+    <div class="user-profile-fields">
+        <div class="field">
+          <label>Ethereum</label>
+          <span class="value"><%= @user.ethereum_address %></span>
+        </div>
+    </div>
+    <% end %>
+
     <% if @user.profile_fields.present? %>
     <div class="user-profile-fields">
       <% @user.profile_fields.each_key do |field| %>
