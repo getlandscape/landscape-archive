@@ -49,7 +49,7 @@
       </div>
     </li>
   <% else %>
-    <% if !Setting.sso_enabled? %>
+    <% if !Setting.sso_enabled? && ENV['allow_signup'] != 'no' %>
     <li class="nav-item"><%= link_to t("common.register"), main_app.new_user_registration_path, class: "nav-link" %></li>
     <% end %>
 

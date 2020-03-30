@@ -8,6 +8,7 @@ class TopicsController < ApplicationController
                                               action favorites]
   load_and_authorize_resource only: %i[new edit create update destroy favorite unfavorite follow unfollow]
   before_action :set_topic, only: %i[edit update destroy follow unfollow action ban]
+  before_action :check_visitor, only: %i[show index excellent]
 
   def index
     @suggest_topics = []
@@ -157,6 +158,14 @@ class TopicsController < ApplicationController
 
     def set_topic
       @topic ||= Topic.find(params[:id])
+    end
+
+    def check_visitor
+      if ENV['allow_visitor'] == 'no' && current_user.blank?
+        message = "You are not allowed to access the page."
+        logger.warn message
+        return redirect_to(new_user_session_path, notice: t(message))
+      end
     end
 
     def topic_params

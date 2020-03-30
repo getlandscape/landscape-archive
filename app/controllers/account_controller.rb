@@ -14,6 +14,12 @@ class AccountController < Devise::RegistrationsController
 
   # POST /resource
   def create
+    if ENV['allow_signup'] == 'no'
+      message = "You are not allowed to sign up."
+      logger.warn message
+      return render status: 403, plain: message
+    end
+
     cache_key = ["user-sign-up", request.remote_ip, Date.today]
     # IP limit
     sign_up_count = Rails.cache.read(cache_key) || 0
