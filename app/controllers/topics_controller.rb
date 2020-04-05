@@ -178,7 +178,7 @@ class TopicsController < ApplicationController
     end
 
     def check_visitor
-      if ENV['allow_visitor'] == 'no' && current_user.blank?
+      if Setting.visitor_disallowed? && current_user.blank?
         message = "You are not allowed to access the page."
         logger.warn message
         return redirect_to(new_user_session_path, notice: t(message))

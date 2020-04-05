@@ -1,9 +1,17 @@
 "zh-CN":
   common:
+    id: "编号"
+    name: "名称"
+    created_time: "创建时间"
+    commenter: "评论人"
+    comment_target: "被评论对象"
+    content: "内容"
+    all: "全部"
     justnow: "刚刚"
     hour: "小时"
     minute: "分钟"
     edit: "修改"
+    creator: "新建者"
     create: "新建"
     avatar: "头像"
     save: "保存"

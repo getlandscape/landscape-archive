@@ -14,7 +14,7 @@ class AccountController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    if ENV['allow_signup'] == 'no'
+    if Setting.signup_disallowed?
       message = "You are not allowed to sign up."
       logger.warn message
       return render status: 403, plain: message

@@ -149,6 +149,14 @@ class Setting < RailsSettings::Base
   field :google_analytics_key, default: ""
 
   class << self
+    def signup_disallowed?
+      ENV['allow_signup'] == 'no'
+    end
+    
+    def visitor_disallowed?
+      ENV['allow_visitor'] == 'no'
+    end
+
     def editable_keys
       EDITABLE_KEYS
     end

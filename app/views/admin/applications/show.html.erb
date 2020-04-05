@@ -1,16 +1,16 @@
 <% content_for :sitemap do %>
-  <a href="<%= admin_applications_path %>">OAuth 应用</a> <i class="fa fa-angle-right"></i> <span class="current">详情</span>
+  <a href="<%= admin_applications_path %>">OAuth APP</a> <i class="fa fa-angle-right"></i> <span class="current">详情</span>
 <% end %>
 
 <ul class="list-group">
   <li class="list-group-item">
-    <label class="col-sm-1">名称:</label> <%= @application.name %></li>
+    <label class="col-sm-1"><%= t("common.name") %>:</label> <%= @application.name %></li>
   <li class="list-group-item">
     <label class="col-sm-1">Uid:</label> <%= @application.uid %></li>
   <li class="list-group-item">
     <label class="col-sm-1">Secret:</label> <%= @application.secret %></li>
   <li class="list-group-item">
-    <label class="col-sm-1">创建人:</label> <%= user_name_tag(@application.owner) %></li>
+    <label class="col-sm-1"><%= t("common.creator") %>:</label> <%= user_name_tag(@application.owner) %></li>
   <li class="list-group-item">
     <label class="col-sm-1">用户量:</label> <%= @application.access_tokens.count %></li>
   <li class="list-group-item">
