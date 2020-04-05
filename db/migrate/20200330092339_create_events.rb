@@ -5,7 +5,6 @@ class CreateEvents < ActiveRecord::Migration[6.0]
       t.integer :topic_id
       t.datetime :start_time
       t.datetime :end_time
-      t.boolean :can_register, default: true
       t.boolean :open_register, default: true
       t.string :location
       t.string :live_url

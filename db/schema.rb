@@ -244,7 +244,6 @@ ActiveRecord::Schema.define(version: 2020_03_30_131146) do
   create_table "tickets", force: :cascade do |t|
     t.integer "user_id"
     t.integer "event_id"
-    t.integer "topic_id"
     t.string "status"
     t.integer "paid_amount"
     t.datetime "created_at", precision: 6, null: false

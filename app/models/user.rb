@@ -29,6 +29,8 @@ class User < ApplicationRecord
   has_many :team_users
   has_many :teams, through: :team_users
   has_many :tickets, dependent: :destroy
+  has_many :registered_events, through: :tickets, source: :event
+  has_many :registered_topics, through: :registered_events, source: :topic
   has_one :sso, class_name: "UserSSO", dependent: :destroy
 
   attr_accessor :password_confirmation

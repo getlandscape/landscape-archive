@@ -32,6 +32,8 @@
         <div class="dropdown-divider"></div>
         <%= link_to t("menu.edit_account_path"), main_app.setting_path, class: "dropdown-item" %>
         <%= link_to t("menu.likes"), main_app.favorites_topics_path, class: "dropdown-item" %>
+        <%= link_to t("menu.published_events"), main_app.published_events_topics_path, class: "dropdown-item" %>
+        <%= link_to t("menu.registered_events"), main_app.registered_events_topics_path, class: "dropdown-item" %>
         <% Homeland.user_menu_plugins.each do |plugin| %>
           <%= link_to plugin.display_name, plugin.root_path, class: "dropdown-item" %>
         <% end %>

@@ -29,6 +29,18 @@ module Topics
       render_index("favorites")
     end
 
+    # GET /topics/registered_events
+    def registered_events
+      @topics = current_user.registered_topics.without_ban.fields_for_list.page(params[:page])
+      render_index("registered_events")
+    end
+
+    # GET /topics/published_events
+    def published_events
+      @topics = topics_scope(current_user.topics.where(topic_type: 'event')).page(params[:page])
+      render_index("published_events")
+    end
+
     # GET /topics/last
     def last
       @topics = topics_scope.recent.page(params[:page])
