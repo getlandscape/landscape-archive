@@ -1,4 +1,10 @@
 <div class="sidebar team-sidebar col-sm-4">
+  <div class="card">
+    <div class="card-body">
+      <%= link_to t('topics.new_topic'), main_app.new_topic_path(team_id: @team.id), class: 'btn btn-primary btn-block' %>
+    </div>
+  </div>
+
   <div class="card members">
     <div class="card-header"><%= t('teams.users') %></div>
     <div class="card-body">

@@ -34,7 +34,7 @@ class TopicsController < ApplicationController
     if params[:page].to_i <= 1
       @suggest_topics = topics_scope.suggest.limit(3)
     end
-    @topics = topics_scope.without_suggest.last_actived.page(params[:page])
+    @topics = topics_scope.without_suggest.without_team.last_actived.page(params[:page])
     @page_title = t("menu.topics")
     @read_topic_ids = []
     if current_user
@@ -65,6 +65,10 @@ class TopicsController < ApplicationController
     @topic = Topic.unscoped.includes(:user).find(params[:id])
     render_404 if @topic.deleted?
 
+    if @topic.team && (current_user.blank? || !@topic.team.user_ids.include?(current_user.id))
+      render_403
+    end
+
     @topic.hits.incr(1)
     @node = @topic.node
     @show_raw = params[:raw] == "1"
@@ -78,6 +82,10 @@ class TopicsController < ApplicationController
 
   def new
     @topic = Topic.new(user_id: current_user.id)
+    if params[:team_id]
+      @topic.team_id = params[:team_id]
+    end
+
     unless params[:node].blank?
       @topic.node_id = params[:node]
       @node = Node.find_by_id(params[:node])
