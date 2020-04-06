@@ -21,7 +21,6 @@ gem "pghero"
 gem "dotenv-rails"
 
 gem "http"
-gem "ruby-ipfs-http-client", :require => false
 
 gem "rack-attack"
 

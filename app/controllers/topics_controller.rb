@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'ipfs' if Setting.enable_ipfs?
-
 class Article
   def initialize(topic)
     @title = topic.title
@@ -129,10 +127,9 @@ class TopicsController < ApplicationController
 
       Dir.mkdir(ipfs_filename)
       File.write("#{ipfs_filename}/index.html", rendered)
-      obj = Ipfs::File.new(path: "#{ipfs_filename}/index.html")
-      obj.add
-      @topic.ipfs_hash = obj.multihash.to_s
-      @topic
+      resp = RestClient.post "#{ENV['ipfs_api_base']}/api/v0/add", 'index.html' => File.new("#{ipfs_filename}/index.html", 'rb')
+      resp = JSON.parse(resp.body)
+      @topic.ipfs_hash = resp["Hash"]
       @topic.save
     end
   end

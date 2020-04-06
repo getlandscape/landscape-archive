@@ -30,6 +30,16 @@ services:
     volumes:
       - ./data/elasticsearch:/usr/share/elasticsearch/data
 
+  landscape_ipfs:
+    container_name: 'landscape_ipfs'
+    image: ipfs/go-ipfs
+    ports:
+      - 4001:4001
+      - 8080:8080
+      - 5001:5001
+    volumes:
+      - ./data/ipfs:/data/ipfs
+
   landscape_app:
     container_name: 'landscape_app'
     image: landscape/landscape
@@ -40,6 +50,7 @@ services:
       - landscape_search
       - landscape_db
       - landscape_redis
+      - landscape_ipfs
     logging:
       options:
         max-size: "1g"
@@ -54,6 +65,7 @@ services:
       - ./data/shared/cache/uploads-thumb:/home/app/cache/uploads-thumb
       - ./data/log:/home/app/homeland/log
       - ./data/tmp:/home/app/homeland/tmp
+      - ./data/ipfs:/root/.ipfs
     command: /home/app/homeland/bin/docker-start
     ports:
       - "3000:3000"
@@ -89,7 +101,7 @@ services:
     restart: always
     image: landscape/landscape
     ports:
-      - 8080:80
+      - 8000:80
     links:
       - landscape_app
     command: nginx -c /etc/nginx/nginx.conf

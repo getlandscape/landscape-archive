@@ -35,6 +35,7 @@ class Ability
       roles_for_teams
       roles_for_team_users
       basic_read_only
+      can :create, Team
     end
 
     # 未登录用户权限

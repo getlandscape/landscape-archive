@@ -24,7 +24,7 @@
   <% end %>
 
     <% if Setting.enable_ipfs? || true %>
-      <%= link_to raw("<i class='fa fa-diamond'></i> IPFS"), "#{ENV['ipfs_dateway']}#{@topic.ipfs_hash}", title: "IPFS Link" %>
+      <%= link_to raw("<i class='fa fa-diamond'></i> IPFS"), "#{ENV['ipfs_gateway']}#{@topic.ipfs_hash}", title: "IPFS Link" %>
     <% end %>
 
   <span class="pull-right opts">
