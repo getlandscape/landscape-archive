@@ -78,10 +78,10 @@
           psn_id: PSN ID
           steam_id: Stream ID
       team:
-        name: '公司／组织名称'
+        name: '群组名称'
         login: 'Slug'
-        bio: '公司／组织介绍'
-        website: '公司 / 项目网址'
+        bio: '群组介绍'
+        website: '群组网址'
       team_user:
         login: '用户名'
         role: '权限'
