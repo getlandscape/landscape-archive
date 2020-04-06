@@ -23,7 +23,7 @@
 
   <% end %>
 
-    <% if Setting.enable_ipfs? || true %>
+    <% if Setting.enable_ipfs? && @topic.ipfs_hash %>
       <%= link_to raw("<i class='fa fa-diamond'></i> IPFS"), "#{ENV['ipfs_gateway']}#{@topic.ipfs_hash}", title: "IPFS Link" %>
     <% end %>
 

@@ -119,9 +119,8 @@ class TopicsController < ApplicationController
     @topic.node_id = params[:node] || topic_params[:node_id]
     @topic.team_id = ability_team_id
     @topic.topic_type = 'event' if @topic.event.present?
-    @topic.save
 
-    if Setting.enable_ipfs?
+    if @topic.save && Setting.enable_ipfs?
       rendered = ERB_RENDER.result(Article.new(@topic).get_binding)
       ipfs_filename = "tmp/data/#{@topic.id}"
 
