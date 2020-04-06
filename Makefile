@@ -1,18 +1,18 @@
-RUN  = docker-compose run app
-RAKE = docker-compose run app bundle exec rake
+RUN  = docker-compose run landscape_app
+RAKE = docker-compose run landscape_app bundle exec rake
 
 build:
-	@docker build -t landscape/landscape:latest . -f deploy/Dockerfile
+	@docker build -f deploy/Dockerfile -t landscape/landscape:latest .
 shell:
-  docker exec -it landscape_app /bin/sh
-up:
-	docker-compose up -d -f deploy/docker-compose.yml
+	docker exec -it landscape_app /bin/sh
 status:
-	docker-compose ps -f deploy/docker-compose.yml
+	docker-compose -f deploy/docker-compose.yml ps
 stop:
-	docker-compose stop landscape_app landscape_nginx -f deploy/docker-compose.yml
+	docker-compose -f deploy/docker-compose.yml stop landscape_app landscape_nginx
+up:
+	docker-compose -f deploy/docker-compose.yml up -d
 down:
-	docker-compose down -f deploy/docker-compose.yml
+	docker-compose -f deploy/docker-compose.yml down
 secret:
 	@test -f deploy/app.secret.env || echo "SECRET_KEY_BASE=`openssl rand -hex 32`" > deploy/app.secret.env
 	@cat deploy/app.secret.env
