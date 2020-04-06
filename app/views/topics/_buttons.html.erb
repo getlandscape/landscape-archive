@@ -20,7 +20,13 @@
     <% else %>
       <%= link_to raw("<i class='fa fa-ban'></i> 取消"), action_topic_path(@topic, type: 'normal'), method: :post, remote: true, title: "取消全站屏蔽此贴" %>
     <% end %>
+
   <% end %>
+
+    <% if Setting.enable_ipfs? || true %>
+      <%= link_to raw("<i class='fa fa-diamond'></i> IPFS"), "#{ENV['ipfs_dateway']}#{@topic.ipfs_hash}", title: "IPFS Link" %>
+    <% end %>
+
   <span class="pull-right opts">
     <% if can?(:close, @topic) %>
       <% if !@topic.closed? %>

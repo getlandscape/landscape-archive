@@ -1,5 +1,24 @@
 # frozen_string_literal: true
 
+class Article
+  def initialize(topic)
+    @title = topic.title
+    @username = topic.user.name
+    @user = "https://trylandscape/#{@username}"
+    @date = topic.created_at.to_date.to_s
+    @datetime = topic.created_at.to_s
+    @source  = 'landscape'
+    @body_html = topic.body_html
+  end
+  
+  def get_binding
+    binding()
+  end
+end
+
+IPFS_TEMPLATE = File.read('app/views/static/index.html.erb')
+ERB_RENDER = ERB.new(IPFS_TEMPLATE)
+
 class TopicsController < ApplicationController
   include Topics::ListActions
 
@@ -93,6 +112,19 @@ class TopicsController < ApplicationController
     @topic.team_id = ability_team_id
     @topic.topic_type = 'event' if @topic.event.present?
     @topic.save
+
+    if Setting.enable_ipfs?
+      rendered = ERB_RENDER.result(Article.new(@topic).get_binding)
+      ipfs_filename = "tmp/data/#{@topic.id}"
+
+      Dir.mkdir(ipfs_filename)
+      File.write("#{ipfs_filename}/index.html", rendered)
+      obj = Ipfs::File.new(path: "#{ipfs_filename}/index.html")
+      obj.add
+      @topic.ipfs_hash = obj.multihash.to_s
+      @topic
+      @topic.save
+    end
   end
 
   def preview

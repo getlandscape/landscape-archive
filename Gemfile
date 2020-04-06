@@ -18,6 +18,9 @@ gem "sanitize"
 gem "pg"
 gem "pghero"
 
+gem "http"
+gem "ruby-ipfs-http-client", :require => 'ipfs'
+
 gem "dotenv-rails"
 
 gem "rack-attack"

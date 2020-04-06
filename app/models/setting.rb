@@ -157,6 +157,10 @@ class Setting < RailsSettings::Base
       ENV['allow_visitor'] == 'no'
     end
 
+    def enable_ipfs?
+      ENV['enable_ipfs'] == 'yes'
+    end
+
     def editable_keys
       EDITABLE_KEYS
     end
