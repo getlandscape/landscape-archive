@@ -21,9 +21,7 @@ gem "pghero"
 gem "dotenv-rails"
 
 gem "http"
-if ENV['enable_ipfs'] == 'yes'
-  gem "ruby-ipfs-http-client", :require => 'ipfs'
-end
+gem "ruby-ipfs-http-client", :require => false
 
 gem "rack-attack"
 

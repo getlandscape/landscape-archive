@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'ipfs' if Setting.enable_ipfs?
+
 class Article
   def initialize(topic)
     @title = topic.title
