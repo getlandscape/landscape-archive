@@ -64,7 +64,7 @@
       </div>
     </li>
   <% else %>
-    <% if !Setting.sso_enabled? && Setting.signup_disallowed? %>
+    <% if !Setting.sso_enabled? && !Setting.signup_disallowed? %>
     <li class="nav-item"><%= link_to t("common.register"), main_app.new_user_registration_path, class: "nav-link" %></li>
     <% end %>
 
