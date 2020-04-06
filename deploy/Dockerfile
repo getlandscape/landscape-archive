@@ -8,6 +8,7 @@ RUN apk --update add ca-certificates nodejs tzdata imagemagick &&\
 
 ENV RAILS_ENV "production"
 ENV RUBYOPT "W0"
+ENV enable_ipfs "no"
 
 WORKDIR /home/app/homeland
 

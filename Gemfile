@@ -18,10 +18,12 @@ gem "sanitize"
 gem "pg"
 gem "pghero"
 
-gem "http"
-gem "ruby-ipfs-http-client", :require => 'ipfs'
-
 gem "dotenv-rails"
+
+gem "http"
+if ENV['enable_ipfs'] == 'yes'
+  gem "ruby-ipfs-http-client", :require => 'ipfs'
+end
 
 gem "rack-attack"
 
