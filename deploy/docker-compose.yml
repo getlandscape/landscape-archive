@@ -65,10 +65,10 @@ services:
       - ./data/shared/cache/uploads-thumb:/home/app/cache/uploads-thumb
       - ./data/log:/home/app/homeland/log
       - ./data/tmp:/home/app/homeland/tmp
-      - ./data/ipfs:/root/.ipfs
     command: /home/app/homeland/bin/docker-start
     ports:
       - "3000:3000"
+      - 8000:80
 
   landscape_worker:
     container_name: 'landscape_worker'
@@ -95,20 +95,4 @@ services:
       - ./data/log:/home/app/homeland/log
       - ./data/tmp:/home/app/homeland/tmp
     command: bundle exec sidekiq -C config/sidekiq.yml
-
-  landscape_nginx:
-    container_name: landscape_nginx
-    restart: always
-    image: landscape/landscape
-    ports:
-      - 8000:80
-    links:
-      - landscape_app
-    command: nginx -c /etc/nginx/nginx.conf
-    volumes:
-      - ./data/uploads:/home/app/homeland/public/uploads
-      - ./data/shared/cache/uploads-thumb:/home/app/cache/uploads-thumb
-      - ./data/log:/home/app/log
-      - ./data/tmp:/home/app/tmp
-      - ./data/pids:/home/app/pids
 
