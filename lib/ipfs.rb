@@ -28,8 +28,8 @@ module Ipfs
   end
 
   def self.api_endpoint
-    if ENV['IPFS_API']
-      ENV['IPFS_API']
+    if ENV['ipfs_api_base']
+      ENV['ipfs_api_base']
     else
       api_endpoint_from_config
     end
@@ -63,7 +63,7 @@ module Ipfs
     datamap = datamap.map {|k, e| [k, stringfile(e, k)] }.to_h
     p datamap
     resp = RestClient.post "http://#{api_endpoint}/api/v0/add?pin=true&recursive=true&wrap-with-directory=true", datamap
-    puts resp
+    resp.body.split.map { |e| JSON.parse(e) }
   end
 
 end

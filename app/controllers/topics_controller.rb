@@ -16,6 +16,7 @@ class Article
   end
 end
 
+require 'ipfs'
 IPFS_TEMPLATE = File.read('app/views/static/index.html.erb')
 ERB_RENDER = ERB.new(IPFS_TEMPLATE)
 
@@ -122,14 +123,17 @@ class TopicsController < ApplicationController
 
     if @topic.save && Setting.enable_ipfs?
       rendered = ERB_RENDER.result(Article.new(@topic).get_binding)
-      ipfs_filename = "tmp/data/#{@topic.id}"
-
-      Dir.mkdir(ipfs_filename)
-      File.write("#{ipfs_filename}/index.html", rendered)
-      resp = RestClient.post "#{ENV['ipfs_api_base']}/api/v0/add", 'index.html' => File.new("#{ipfs_filename}/index.html", 'rb')
-      resp = JSON.parse(resp.body)
-      @topic.ipfs_hash = resp["Hash"]
+      hash = Ipfs.add_datamap('index.html' => rendered)
+      @topic.ipfs_hash = hash[-1]["Hash"]
       @topic.save
+
+      # ipfs_filename = "tmp/data/#{@topic.id}"
+      # Dir.mkdir(ipfs_filename)
+      # File.write("#{ipfs_filename}/index.html", rendered)
+      # resp = RestClient.post "#{ENV['ipfs_api_base']}/api/v0/add", 'index.html' => File.new("#{ipfs_filename}/index.html", 'rb')
+      # resp = JSON.parse(resp.body)
+      # @topic.ipfs_hash = resp["Hash"]
+      # @topic.save
     end
   end
 
