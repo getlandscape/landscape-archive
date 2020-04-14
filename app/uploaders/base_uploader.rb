@@ -39,6 +39,8 @@ class BaseUploader < CarrierWave::Uploader::Base
       super(thumb: "?x-oss-process=image/#{aliyun_thumb_key(version_name)}")
     when "upyun"
       [@url, version_name].join("!")
+    when "aws"
+      @url
     when "qiniu"
       super(style: qiniu_thumb_key(version_name))
     else

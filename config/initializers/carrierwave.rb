@@ -53,6 +53,30 @@ CarrierWave.configure do |config|
     config.qiniu_bucket         = Setting.upload_bucket
     config.qiniu_protocol       = Setting.upload_url.split("://")[0]
     config.qiniu_bucket_domain  = Setting.upload_url.split("://")[1]
+  when "aws"
+    config.storage    = :aws
+    config.aws_bucket = Setting.upload_bucket
+    config.aws_acl    = 'public-read'
+
+    # Optionally define an asset host for configurations that are fronted by a
+    # content host, such as CloudFront.
+    # config.asset_host = 'http://example.com'
+
+    # The maximum period for authenticated_urls is only 7 days.
+    # config.aws_authenticated_url_expiration = 60 * 60 * 24 * 7
+
+    config.aws_attributes = -> { {
+      expires: 1.week.from_now.httpdate,
+      cache_control: 'max-age=604800'
+    } }
+
+    config.aws_credentials = {
+      access_key_id:     Setting.upload_access_id,
+      secret_access_key: Setting.upload_access_secret,
+      region:            Setting.upload_region,
+      # Optional, avoid hitting S3 actual during tests
+      stub_responses:    Rails.env.test?
+    }
   else
     config.storage = :file
   end

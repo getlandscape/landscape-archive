@@ -44,6 +44,7 @@ gem "carrierwave", "~> 1.3.1"
 gem "carrierwave-aliyun"
 gem "carrierwave-upyun"
 gem "carrierwave-qiniu"
+gem "carrierwave-aws"
 
 # Lazy load
 gem "mini_magick", require: false
