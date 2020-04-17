@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 # @class NodeSerializer
-# 节点
+# 版块
 #
 # == attributes
 # - *id* [Integer] 编号
-# - *name* [String] 节点名称
+# - *name* [String] 版块名称
 # - *summary* [String] 简介, Markdown 格式
 # - *section_id* [Integer] 大类别编号
 # - *section_name* [String] 大类别名称

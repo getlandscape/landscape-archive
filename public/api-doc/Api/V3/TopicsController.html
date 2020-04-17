@@ -677,7 +677,7 @@
       
         &mdash;
         <div class='inline'>
-<p>节点编号, [required]</p>
+<p>版块编号, [required]</p>
 </div>
       
     </li>
@@ -1081,7 +1081,7 @@ excellent)</p>
       
         &mdash;
         <div class='inline'>
-<p>节点编号，如果有给，就会只去节点下的话题</p>
+<p>版块编号，如果有给，就会只去版块下的话题</p>
 </div>
       
     </li>
@@ -1563,7 +1563,7 @@ excellent)</p>
       
         &mdash;
         <div class='inline'>
-<p>节点编号, [required]</p>
+<p>版块编号, [required]</p>
 </div>
       
     </li>
@@ -1653,11 +1653,11 @@ excellent)</p>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="ApplicationController/AccessDenied.html" title="Api::V3::ApplicationController::AccessDenied (class)">AccessDenied</a></span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_can?'>can?</span><span class='lparen'>(</span><span class='symbol'>:update</span><span class='comma'>,</span> <span class='ivar'>@topic</span><span class='rparen'>)</span>
 
   <span class='kw'>if</span> <span class='ivar'>@topic</span><span class='period'>.</span><span class='id identifier rubyid_lock_node'>lock_node</span> <span class='op'>==</span> <span class='kw'>false</span> <span class='op'>||</span> <span class='id identifier rubyid_admin?'>admin?</span>
-    <span class='comment'># 锁定接点的时候，只有管理员可以修改节点
+    <span class='comment'># 锁定接点的时候，只有管理员可以修改版块
 </span>    <span class='ivar'>@topic</span><span class='period'>.</span><span class='id identifier rubyid_node_id'>node_id</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:node_id</span><span class='rbracket'>]</span>
 
     <span class='kw'>if</span> <span class='id identifier rubyid_admin?'>admin?</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@topic</span><span class='period'>.</span><span class='id identifier rubyid_node_id_changed?'>node_id_changed?</span>
-      <span class='comment'># 当管理员修改节点的时候，锁定节点
+      <span class='comment'># 当管理员修改版块的时候，锁定版块
 </span>      <span class='ivar'>@topic</span><span class='period'>.</span><span class='id identifier rubyid_lock_node'>lock_node</span> <span class='op'>=</span> <span class='kw'>true</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>

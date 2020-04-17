@@ -1,4 +1,4 @@
-<h1>你关注的帖子有了新回复</h1>
+<h1>你关注的文章有了新回复</h1>
 <p>
    <%= user_name_tag(@reply.user) %>  回复了 《<%= topic_title_tag(@topic)%>》:</label> <br />
 </p>
@@ -6,5 +6,5 @@
   <p><%= @reply.body_html %><br/></p>
 </blockquote>
 <p>
- <label> 帖子地址:</label> <%= topic_title_tag(@topic) %>.
+ <label> 文章地址:</label> <%= topic_title_tag(@topic) %>.
 </p>

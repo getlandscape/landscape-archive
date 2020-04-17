@@ -17,7 +17,7 @@
         <span title="注册日期"><%= item.created_at.to_date %></span>
         <% if item.location.present? %> • <span title="所在地"><%= location_name_tag(item.location) %></span><% end %>
          •
-        <span><%= item.topics_count %></span> 篇帖子 • <span><%= item.replies_count %></span> 条回帖
+        <span><%= item.topics_count %></span> 篇文章 • <span><%= item.replies_count %></span> 条回帖
       </div>
     </div>
   </div>

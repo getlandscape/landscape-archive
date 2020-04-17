@@ -20,7 +20,7 @@ module Admin
 
     def show
       if @reply.topic.blank?
-        redirect_to admin_replies_path, alert: "帖子已经不存在"
+        redirect_to admin_replies_path, alert: "文章已经不存在"
       end
     end
 

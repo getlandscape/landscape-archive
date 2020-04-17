@@ -78,7 +78,7 @@ module UsersHelper
     if blocked
       link_to raw("#{icon} <span>取消屏蔽</span>"), "#", title: "忽略后，社区首页列表将不会显示这里的内容。", "data-id" => node.id, class: "#{class_names} active"
     else
-      link_to raw("#{icon} <span>忽略节点</span>"), "#", title: "", "data-id" => node.id, class: class_names
+      link_to raw("#{icon} <span>忽略版块</span>"), "#", title: "", "data-id" => node.id, class: class_names
     end
   end
 

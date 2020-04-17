@@ -89,7 +89,7 @@
       topic:
         title: "标题"
         user_id: "用户"
-        node_id: "节点"
+        node_id: "版块"
         team_id: "关联到组织"
         body: "正文"
       reply:

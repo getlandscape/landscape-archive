@@ -7,7 +7,7 @@
       site_configs: "设置"
       users: "用户"
       sections: "分类"
-      nodes: "节点"
+      nodes: "版块"
       wiki: "Wiki"
       topics: "话题"
       replies: "回复"
@@ -16,7 +16,7 @@
       locations: "城市"
       exception_logs: "异常"
     overview: "概览"
-    recent_topics: "最近帖子"
+    recent_topics: "最近文章"
     statics: "统计信息"
     site_configs:
       settings: "全局设置"

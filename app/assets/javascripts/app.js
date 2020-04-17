@@ -301,7 +301,7 @@ const AppView = Backbone.View.extend({
     if (btn.hasClass("active")) {
       $.post(`/nodes/${nodeId}/unblock`);
       btn.removeClass('active').attr("title", "忽略后，社区首页列表将不会显示这里的内容。");
-      span.text("忽略节点");
+      span.text("忽略版块");
     } else {
       $.post(`/nodes/${nodeId}/block`);
       btn.addClass('active').attr("title", "");

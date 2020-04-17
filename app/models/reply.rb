@@ -21,7 +21,7 @@ class Reply < ApplicationRecord
   validate do
     ban_words = Setting.ban_words_on_reply.collect(&:strip)
     if body && body.strip.downcase.in?(ban_words)
-      errors.add(:body, "请勿回复无意义的内容，如你想收藏或赞这篇帖子，请用帖子后面的功能。")
+      errors.add(:body, "请勿回复无意义的内容，如你想收藏或赞这篇文章，请用文章后面的功能。")
     end
 
     if topic&.closed?

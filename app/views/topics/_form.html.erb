@@ -9,7 +9,7 @@
       <div class="input-group-prepend">
         <button type="button" class="btn btn-default" id="node-selector-button"
           data-toggle="modal" data-target="#node-selector">
-          <%= @topic.node&.name || '选择节点...' %>
+          <%= @topic.node&.name || '选择版块...' %>
         </button>
       </div>
       <%= f.text_field :title, class: "form-control", placeholder: "在这里填写标题" %>

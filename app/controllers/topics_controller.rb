@@ -147,11 +147,11 @@ class TopicsController < ApplicationController
 
   def update
     if can?(:change_node, @topic)
-      # 锁定接点的时候，只有管理员可以修改节点
+      # 锁定接点的时候，只有管理员可以修改版块
       @topic.node_id = topic_params[:node_id]
 
       if @topic.node_id_changed? && can?(:lock_node, @topic)
-        # 当管理员修改节点的时候，锁定节点
+        # 当管理员修改版块的时候，锁定版块
         @topic.lock_node = true
       end
     end

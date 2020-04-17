@@ -34,7 +34,7 @@ class Notification < ActiveRecord::Base
     elsif notify_type == "mention"
       "#{self.actor.login} 提及了你"
     elsif notify_type == "node_changed"
-      "你的话题被移动了节点到 #{self.second_target.name}"
+      "你的话题被移动了版块到 #{self.second_target.name}"
     else
       ""
     end

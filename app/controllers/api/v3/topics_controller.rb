@@ -11,7 +11,7 @@ module Api
       # GET /api/v3/topics
       #
       # @param type [String] 排序类型, default: `last_actived`, %w(last_actived recent no_reply popular excellent)
-      # @param node_id [Integer] 节点编号，如果有给，就会只去节点下的话题
+      # @param node_id [Integer] 版块编号，如果有给，就会只去版块下的话题
       # @param offset [Integer] default: 0
       # @param limit [Integer] default: 20, range: 1..150
       #
@@ -74,7 +74,7 @@ module Api
       # POST /api/v3/topics
       #
       # @param title [String] 标题, [required]
-      # @param node_id [Integer] 节点编号, [required]
+      # @param node_id [Integer] 版块编号, [required]
       # @param body [Markdown] 格式的正文, [required]
       # @return [TopicDetailSerializer]
       def create
@@ -96,7 +96,7 @@ module Api
       # POST /api/v3/topics/:id
       #
       # @param title [String] 标题, [required]
-      # @param node_id [Integer] 节点编号, [required]
+      # @param node_id [Integer] 版块编号, [required]
       # @param body [String] Markdown 格式的正文, [required]
       # @return [TopicDetailSerializer]
       def update
@@ -107,11 +107,11 @@ module Api
         raise AccessDenied unless can?(:update, @topic)
 
         if @topic.lock_node == false || can?(:lock_node, @topic)
-          # 锁定接点的时候，只有管理员可以修改节点
+          # 锁定接点的时候，只有管理员可以修改版块
           @topic.node_id = params[:node_id]
 
           if @topic.node_id_changed? || can?(:lock_node, @topic)
-            # 当管理员修改节点的时候，锁定节点
+            # 当管理员修改版块的时候，锁定版块
             @topic.lock_node = true
           end
         end

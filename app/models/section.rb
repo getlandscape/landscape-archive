@@ -15,7 +15,7 @@ class Section < ApplicationRecord
   after_destroy :update_cache_version
 
   def update_cache_version
-    # 记录节点变更时间，用于清除缓存
+    # 记录版块变更时间，用于清除缓存
     CacheVersion.section_node_updated_at = Time.now.to_i
   end
 
