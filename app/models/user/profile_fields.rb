@@ -10,8 +10,7 @@ class User
 
       scoped_field :profile_fields, default: {}
 
-      PROFILE_FIELDS = %i[alipay paypal qq weibo wechat douban
-                          facebook instagram dribbble battle_tag psn_id steam_id]
+      PROFILE_FIELDS = %i[alipay weibo wechat douban]
 
       PROFILE_FIELD_PREFIXS = {
         douban: "https://www.douban.com/people/",

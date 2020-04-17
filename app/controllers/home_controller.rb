@@ -1,8 +1,16 @@
 # frozen_string_literal: true
 
 class HomeController < ApplicationController
+  include Topics::ListActions
   def index
     @excellent_topics = Topic.excellent.recent.fields_for_list.limit(20).to_a
+
+    @suggest_topics = []
+    if params[:page].to_i <= 1
+      @suggest_topics = topics_scope.suggest.limit(3)
+    end
+    @topics = topics_scope.without_suggest.without_team.last_actived.page(params[:page]).per(8)
+    @read_topic_ids = []
   end
 
   def uploads
