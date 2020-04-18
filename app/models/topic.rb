@@ -59,7 +59,7 @@ class Topic < ApplicationRecord
 
   def full_title
     if self.topic_type == 'event'
-      "[活动] [#{self.event.start_time.to_date.to_s}] #{self.title}"
+      "[活动] [#{self.event.start_time&.to_date&.to_s}] #{self.title}"
     else
       self.title
     end
