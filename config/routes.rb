@@ -74,6 +74,7 @@ Rails.application.routes.draw do
     end
 
     collection do
+      get  :events
       get  :new_event
       get  :registered_events
       get  :published_events

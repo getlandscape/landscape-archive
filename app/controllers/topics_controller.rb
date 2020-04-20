@@ -43,6 +43,11 @@ class TopicsController < ApplicationController
     end
   end
 
+  def events
+    @topics = topics_scope.where(topic_type: 'event').without_suggest.without_team.last_actived.page(params[:page])
+    render action: "index"
+  end
+
   def feed
     @topics = Topic.recent.without_ban.without_hide_nodes.includes(:node, :user, :last_reply_user).limit(20)
     render layout: false if stale?(@topics)

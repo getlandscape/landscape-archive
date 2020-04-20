@@ -96,7 +96,8 @@
     my_home_page: "我的主页"
     edit_account_path: "个人资料设置"
     likes: "我的收藏"
-    teams: "公司／组织"
+    teams: "群组"
+    events: "活动"
     published_events: "我发起的活动"
     registered_events: "我参加的活动"
   comments:
