@@ -4,13 +4,17 @@ web forum for humans
 
 基于 [Ruby China](https://ruby-china.org) 和 [Homeland](https://github.com/ruby-china/homeland/tree/9adaf2f4c42f9c4f8eb4ed6a5965e417ada6a367) 的论坛应用。
 
+新增的功能：
+
+  * 活动发布与报名
+  * 群组内容只对成员可见
+  * 文件上传的 AWS S3
+  * 更好的多语言支持
+  * IPFS 集成，支持将社区中的文章发布到 IPFS 网络
+
 ## Deployment
 
-Please visit https://homeland.ruby-china.org get more documents.
-
-## Release Notes
-
-Please visit [Releases](https://github.com/ruby-china/homeland/releases) page.
+Please visit the [deploy doc](https://homeland.ruby-china.org).
 
 ## Contribute Guide
 
@@ -23,10 +27,6 @@ Please read this document: [CONTRIBUTE GUIDE](https://github.com/ruby-china/home
 * [Font Awesome](http://fortawesome.github.io/Font-Awesome/icons/)
 * Forked from [Homeland Project](https://github.com/huacnlee/homeland)
 * Theme from [Mediom](https://github.com/huacnlee/mediom)
-
-## Sites used Homeland
-
-https://homeland.ruby-china.org/expo
 
 ## License
 

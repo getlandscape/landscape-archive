@@ -40,6 +40,7 @@
     models:
       user: "用户"
       topic: "话题"
+      event: "活动"
       post: 文章
       page: Wiki
       device: "设备"
@@ -77,6 +78,10 @@
           battle_tag: BattleTag
           psn_id: PSN ID
           steam_id: Stream ID
+      event:
+        name: '活动名称'
+        start_time: '开始时间'
+        end_time: '结束时间'
       team:
         name: '群组名称'
         login: 'Slug'
