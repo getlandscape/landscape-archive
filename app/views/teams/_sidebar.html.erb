@@ -1,10 +1,17 @@
 <div class="sidebar team-sidebar col-sm-4">
+  
   <div class="card">
     <div class="card-body">
+      <% if @have_request %>
+      <div>你已经申请加入</div>
+      <% elsif @can_request %>
+      <%= link_to t('menu.new_team_request'), main_app.new_request_team_path(@team), method: :post, remote: true, class: 'btn btn-primary btn-block' %>
+      <% else %>
       <%= link_to t('topics.new_topic'), main_app.new_topic_path(team_id: @team.id), class: 'btn btn-primary btn-block' %>
+      <% end %>
     </div>
   </div>
-
+  
   <div class="card members">
     <div class="card-header"><%= t('teams.users') %></div>
     <div class="card-body">

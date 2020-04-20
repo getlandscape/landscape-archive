@@ -11,7 +11,11 @@ Rails.application.routes.draw do
 
   resources :comments
   resources :devices
-  resources :teams
+  resources :teams do
+    member do
+      post :new_request, to: "users#new_request"
+    end
+  end
 
   if Setting.has_module?(:home)
     root to: "home#index"

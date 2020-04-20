@@ -11,7 +11,7 @@ module Api
       end
 
       # 赞一个信息
-      #
+      #F
       # POST /api/v3/likes
       #
       # @param obj_type [String] 类型 [topic, reply]

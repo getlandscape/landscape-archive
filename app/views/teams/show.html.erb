@@ -4,7 +4,9 @@
   <div class="col-md-8">
     <div class="card topics">
       <div class="card-body">
-        <% if @topics.blank? %>
+        <% if @noshow %>
+        <div class="topic"><div class="no-result">只有群组成员可以查看话题</div></div>
+        <% elsif @topics.blank? %>
         <div class="topic"><div class="no-result">暂无任何话题</div></div>
         <% else %>
         <%= render partial: '/topics/topic', collection: @topics, locals: { suggest: false }, cached: -> (topic) { [topic, 'normal'] } %>

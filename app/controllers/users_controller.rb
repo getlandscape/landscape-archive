@@ -27,6 +27,15 @@ class UsersController < ApplicationController
     @user_type == :team ? team_show : user_show
   end
 
+  def new_request
+    @team = Team.find_by_login!(params[:id])
+    @team_user = TeamUser.new(user: current_user, team: @team, role: :member, status: :request)
+    @team_user.actor_id = current_user.id
+    @team_user.save(context: :request)
+    p @team_user
+    redirect_to user_path(params[:id])
+  end
+
   protected
 
     def set_user
